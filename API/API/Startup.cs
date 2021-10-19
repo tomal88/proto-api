@@ -56,12 +56,13 @@ namespace API
                     ValidateIssuer = true,
                     ValidIssuer = Configuration["ApiBaseUrl"],
                     ValidateAudience = false,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:SecretKey"]))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Key:SecretKey"]))
                 };
             });
 
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IEmailService, EmailService>();
+            services.AddTransient<IUserService, UserService>();
 
             services.AddSwaggerGen(c =>
             {

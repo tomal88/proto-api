@@ -57,12 +57,16 @@ namespace Service.Services
 
         private async Task SendEmail(SendGridModel model)
         {
-            var apiKey = _config["SendGrid:ApiKey"];
-            var client = new SendGridClient(apiKey);
-            var from = new EmailAddress(_config["SendGrid:From"], _config["SendGrid:Name"]);
-            var to = new EmailAddress(model.To);
-            var msg = MailHelper.CreateSingleEmail(from, to, model.Subject, model.PlainText, model.HtmlContent);
-            await client.SendEmailAsync(msg);
+            try
+            {
+                var apiKey = _config["SendGrid:ApiKey"];
+                var client = new SendGridClient(apiKey);
+                var from = new EmailAddress(_config["SendGrid:From"], _config["AppName"]);
+                var to = new EmailAddress(model.To);
+                var msg = MailHelper.CreateSingleEmail(from, to, model.Subject, model.PlainText, model.HtmlContent);
+                await client.SendEmailAsync(msg);
+            }
+            catch { }
         }
     }
 

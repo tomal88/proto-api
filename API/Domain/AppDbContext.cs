@@ -48,6 +48,7 @@ namespace Domain
                 LockoutEnabled = false,
                 ConcurrencyStamp = "5b2f5a62-691c-4188-99f3-068c158d8677",
                 SecurityStamp = "0197e84b-fd4e-4622-956b-870fe6102150",
+                EmailConfirmed = true,
                 PasswordHash = "AQAAAAEAACcQAAAAEJ/t6u7aASZG6DMGaFkLr5XlRW3NRRHWbMpZwWG2FzfLR1k+YwiOgiKuuS+UQEtv+w==" //AdminPass123@#
             };
 

@@ -23,24 +23,16 @@ namespace API.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            if (ModelState.IsValid)
-            {
-                var response = await _authService.Login(model.Email, model.Password);
-                return StatusCode(response.StatusCode, response.Response);
-            }
-            return BadRequest(ModelState);
+            var response = await _authService.Login(model.Email, model.Password);
+            return StatusCode(response.StatusCode, response.Response);
         }
 
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
-            if (ModelState.IsValid)
-            {
-                var response = await _authService.SignUp(model.Email, model.Password);
-                return StatusCode(response.StatusCode, response.Response);
-            }
-            return BadRequest(ModelState);
+            var response = await _authService.SignUp(model.Email, model.Password);
+            return StatusCode(response.StatusCode, response.Response);
         }
 
         [HttpGet]
@@ -56,7 +48,7 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("resend-confirm-email")]
-        public async Task<IActionResult> ResentConfirmEmailLink(EmailModel model)
+        public async Task<IActionResult> ResentConfirmEmailLink([FromBody] EmailModel model)
         {
             var response = await _authService.ResendConfirmEmailLink(model.Email);
             return StatusCode(response.StatusCode, response.Response);
@@ -64,7 +56,7 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("forgot-password")]
-        public async Task<IActionResult> ForgotPassword(EmailModel emailModel)
+        public async Task<IActionResult> ForgotPassword([FromBody] EmailModel emailModel)
         {
             var response = await _authService.SendPasswordResetLink(emailModel.Email);
             return StatusCode(response.StatusCode, response.Response);
