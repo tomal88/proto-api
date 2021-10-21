@@ -9,5 +9,8 @@ namespace API.RequestModels
 
         [Required(ErrorMessage = "Password is required"), MinLength(8), MaxLength(30)]
         public string Password { get; set; }
+
+        [Required(ErrorMessage = "Password is required"), Compare("Password")]
+        public string ConfirmPassword { get; set; }
     }
 }
